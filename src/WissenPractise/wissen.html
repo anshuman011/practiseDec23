@@ -1,4 +1,5 @@
-mcq (same in document and https://github.com/niteshjainy/wissen-ui-coding-challange/blob/main/src/ja-mcq.txt)
+mcq (same in document and
+https://github.com/niteshjainy/wissen-ui-coding-challange/blob/main/src/ja-mcq.txt)
 https://wissen-ui-coding-challange.vercel.app/
 1)What is the output of
 function f1() {
@@ -12,30 +13,30 @@ Undefined, undefined
 global, arguments
 f1, undefined
 ANSHSWER: Ans is c. global, arguments
-this inside the function refers to the global object (in a browser environment, it would be the Window object), and
-arguments refers to the arguments object associated with the function.
+this inside the function refers to the global object (in a browser environment, it would be the Window 
+object), and arguments refers to the arguments object associated with the function.
 function addNumbers(a, b) {
 console.log(arguments);
 }
 addNumbers(3, 5, 7);
-The arguments object is a special object available within the scope of every function in JavaScript, and it contains all
-the passed arguments when the function is invoked.
+The arguments object is a special object available within the scope of every function in JavaScript, and 
+it contains all the passed arguments when the function is invoked.
 //an object that looks like an array but is not an array. It will contain the values [3, 5, 7].
 arguments object is not a real array, so it doesn't have array methods like forEach or map, but it can be iterated
 through using a loop.
-The arguments object allows you to access all the passed values, even if the function is defined with a specific number
-of parameters.
+The arguments object allows you to access all the passed values, even if the function is defined with a 
+specific number of parameters.
 better recommended alternate:
 function addNumbers(...numbers) {
 console.log(numbers);
 }
 addNumbers(3, 5, 7);
 //numbers is an array containing the values [3, 5, 7]
-Arrow functions in JavaScript do not have their own arguments object. Unlike regular functions, arrow functions do not
-bind their own this, arguments, super, or new.target. Instead, they inherit these values from the enclosing lexical
-context.
-If you need to access the arguments passed to an arrow function, you would typically use the rest parameter syntax
-(...).
+Arrow functions in JavaScript do not have their own arguments object. Unlike regular functions, arrow functions
+do not bind their own this, arguments, super, or new.target. Instead, they inherit these values from the 
+enclosing lexical context.
+If you need to access the arguments passed to an arrow function, you would typically use the rest parameter
+syntax (...).
 const myArrowFunction = (...args) => {
 console.log(args);
 };
