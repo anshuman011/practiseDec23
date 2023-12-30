@@ -11,9 +11,9 @@ root.render(
   //functions twice to detect side-effects. This is a debugging feature and should not happen in the production
   //build.To stop this behavior, you can remove the <React.StrictMode> wrapper in your app's entry point 
   //or development configuration.
-  <React.StrictMode>
+  // <React.StrictMode>
     <App />
-  </React.StrictMode>
+  //</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

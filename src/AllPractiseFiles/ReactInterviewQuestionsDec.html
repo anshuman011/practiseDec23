@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    .question {
+      color: blue;
+      font-weight: bold;
+    }
+
+    .answer {
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="question">mm</div>
+</body>
+
+</html>
+interview1 DEC7
+-hooks in react? name few hooks?
+In React, hooks are functions that allow functional components to manage state, side effects, and other React
+features that were previously only available in class components. Hooks were introduced in React version 16.8
+-Custom Hooks:
+A custom hook is a function that uses other hooks to provide a specific piece of functionality.
+-Rules of Hooks:
+Hooks must be called at the top level of the functional component or custom hook
+(not inside loops or conditions).
+Hooks must be called from functional components or custom hooks (not regular JavaScript functions).
+-React.memo()
+React.memo() is a HOC that memoizes the rendering of a functional component.
+It is used to prevent unnecessary renders of a component when its props remain the same.
+It performs a shallow comparison of the props to determine whether the component needs to be re-rendered.
+const MyComponent = React.memo(({ data }) => {
+// Component logic
+return <div>{data}</div>;
+});
+-shallow comparison vs deep comparison in js and in react?????????????
+-usememo vs usecallback
+Use useCallback when you want to memoize a function, especially when passing it as a prop to child components.
+In React, functional components are re-evaluated on every render. This means that the entire function body
+is executed again when the component re-renders.
+As a result, any functions defined within the component are recreated on each render.
+import React, { useState } from 'react';
+const MyComponent = () => {
+const [count, setCount] = useState(0);
+// This function is recreated on every render
+const handleClick = () => {
+setCount(count + 1);
+};
+return (
+<div>
+  <p>Count: {count}</p>
+  <button onClick={handleClick}>Increment</button>
+</div>
+);
+};
+In the example above, handleClick is a new function created on each render. This isn't always a problem, but if
+you pass this function as a prop to child
+components, it could trigger unnecessary re-renders in those child components.
+This is where useCallback comes in handy. It memoizes the function, so it only creates a new function reference
+when the dependencies change.
+Here's an example using useCallback:
+Copy code
+import React, { useState, useCallback } from 'react';
+
+const MyComponent = () => {
+const [count, setCount] = useState(0);
+
+// This function is memoized and only recreated when `count` changes
+const handleClick = useCallback(() => {
+setCount(count + 1);
+}, [count]);
+
+return (
+<div>
+  <p>Count: {count}</p>
+  <ChildComponent handleClick={handleClick} />
+</div>
+);
+};
+
+const ChildComponent = ({ handleClick }) => {
+// Child component receives memoized handleClick
+return (
+<button onClick={handleClick}>Increment</button>
+);
+};
+
+Use useMemo when you want to memoize a value, such as the result of a computation.
+-So, in summary, state variables established with useState persist across re-renders, and
+their values are updated based on calls to the corresponding set functions.
+They don't automatically reset to their default values during each re-render.
+The default values are used only during the initial render to set up the initial state.
+-react lazy
+React.lazy is an API for code-splitting in React. It allows you to load a React component lazily, meaning
+that the component is only loaded when it's actually needed. This can help improve
+the initial loading performance of your application by splitting your code into smaller chunks.
+When you use React.lazy, it returns a dynamic
+import() statement that fetches the component on demand. This import() statement returns a Promise.
+const MyLazyComponent = React.lazy(() => import('./MyLazyComponent'));
+const MyParentComponent = () => (
+<React.Suspense fallback={<div>Loading...</div>}>
+  <MyLazyComponent />
+</React.Suspense>
+);
+React.lazy(() => import('./MyLazyComponent')) returns a Promise that resolves to the module containing
+the MyLazyComponent.
+The component is loaded lazily only when it's needed.
+The React.Suspense component is used to specify a fallback UI while the lazy component is being loaded.
+So, to answer your question, the loading of a lazily loaded component using React.lazy is asynchronous.
+The component is loaded in the background, and the rest of your application can continue to render and
+function while the lazy component is being fetched.
+It's important to note that React.lazy is designed for use with the Suspense component.
+If you're using it without Suspense, it won't behave as expected. Suspense is a way to handle the loading of
+asynchronous components and show fallback content while the component is loading.
+-synch vs asynch
+js is sync singlethreaded non-blocking language
+Synchronous operations are executed one after the other in a sequential manner. Each operation must complete
+before the next one starts.
+In JavaScript, most operations are synchronous by default.
+console.log('Start');
+// Synchronous operation
+function add(a, b) {
+return a + b;
+}
+const result = add(2, 3);
+console.log('Result:', result);
+console.log('End');
+//
+Start
+Result: 5
+End
+Asynchronous operations allow the program to continue executing while waiting for some task to complete.
+JavaScript achieves asynchrony through features like callbacks, promises, and async/await.
+console.log('Start');
+// Asynchronous operation using setTimeout
+setTimeout(() => {
+console.log('Async operation completed');
+}, 2000);
+console.log('End');
+Start
+End
+Async operation completed
+-useeffect how not to get called first time?
+If you want to skip the execution of useEffect during the initial render, you can use a simple boolean flag.
+Here's a straightforward example:
+import React, { useEffect, useState } from 'react';
+const MyComponent = () => {
+const [isInitialRender, setIsInitialRender] = useState(true);
+useEffect(() => {
+// Skip the effect during the initial render
+if (isInitialRender) {
+// Update the flag after the initial render
+setIsInitialRender(false);
+return;
+}
+// Your actual effect logic here
+console.log('useEffect ran after the initial render');
+}, [isInitialRender]);
+return <div>Your component content here</div>;
+};
+export default MyComponent;
+isInitialRender is a state variable that is initially set to true.
+During the initial render, the useEffect is skipped by checking the value of isInitialRender.
+The effect doesn't run during the initial render.
+After the initial render, isInitialRender is updated to false, allowing the effect to run on subsequent renders.
+-how child component can call a function defined in parent component?
+// ChildComponent.jsx
+import React from 'react';
+const ChildComponent = ({ onChildButtonClick }) => {
+return (
+<button onClick={onChildButtonClick}>
+  Click me in the child component
+</button>
+);
+};
+export default ChildComponent;
+// ParentComponent.jsx
+import React from 'react';
+import ChildComponent from './ChildComponent';
+const ParentComponent = () => {
+const handleChildButtonClick = () => {
+console.log('Button clicked in the child component');
+// You can perform any other logic here
+};
+return (
+<div>
+  <h1>Parent Component</h1>
+  <ChildComponent onChildButtonClick={handleChildButtonClick} />
+</div>
+);
+};
+-parent calls child component function
+it is generally not recommended for a parent component to directly call a function defined in a
+child component due to the unidirectional data flow principles.
+However, in certain situations, you might use a ref to access and call a
+function in a child component. Here's an example demonstrating this approach:
+// ParentComponent.jsx
+import React, { useRef } from 'react';
+import ChildComponent from './ChildComponent';
+
+function ParentComponent() {
+const childRef = useRef(null);
+
+const handleButtonClick = () => {
+if (childRef.current) {
+childRef.current.childFunction();
+}
+};
+
+return (
+<div>
+  <ChildComponent ref={childRef} />
+  <button onClick={handleButtonClick}>Call Child Function</button>
+</div>
+);
+}
+
+// ChildComponent.jsx
+import React, { forwardRef } from 'react';
+
+const ChildComponent = forwardRef((props, ref) => {
+const childFunction = () => {
+console.log('Child function invoked!');
+// Add your logic here
+};
+
+// Expose the childFunction through the ref
+React.useImperativeHandle(ref, () => ({
+childFunction,
+}));
+
+return (
+<div>
+  {/* Your child component UI */}
+</div>
+);
+});
+
+export default ChildComponent;
+In this example, the useRef hook is used to create a mutable object (childRef).
+This ref is passed to the ChildComponent as a prop and then assigned to the ref parameter of the forwardRef function.
+The useImperativeHandle hook is used to expose the childFunction to the parent component.
+Keep in mind that directly calling functions in child components from a parent component goes against the
+typical React design patterns. It's usually better to lift state and functions to a common ancestor or use other
+communication mechanisms like callbacks via props to maintain a
+more predictable and maintainable code structure.
+- state updates in React are asynchronous, and the new state may not be immediately available after calling setCount.
+console.log("prev")
+setCount((prev)=>prev+1)
+console.log("next")
+//
+prev
+next
+console.log("next"): This line is executed immediately after the setCount line, without waiting for the state
+to be updated.
+It logs "next" to the console.
+The useState hook returns an array with two elements:
+The current state value.
+A function that allows you to update the state.
+-ensure next is consoled only after setcount updates state
+<button onClick={incrementCount}>Increment</button>
+const incrementCount = () => {
+setCount((prevCount) => prevCount + 1);
+};
+useEffect(() => {
+console.log('Count updated:', count);
+console.log('next');
+}, [count]);
+-hoisting in js
+Hoisting is a behavior in JavaScript where variable and function declarations are moved to the top of their
+containing scope during the compilation phase. This means that regardless of where the declarations appear
+in the code, they are effectively "hoisted" to the top.
+Here are two common scenarios where hoisting occurs:
+1.Variable Hoisting:
+console.log(x); // undefined
+var x = 5;
+console.log(x); // 5
+It's important to note that only the declaration is hoisted, not the initialization.
+So, the variable is accessible but not assigned a value until the corresponding line of code is reached.
+2.Function Hoisting:
+sayHello(); // "Hello, World!"
+function sayHello() {
+console.log("Hello, World!");
+}In this case, the entire function declaration function sayHello() { ... } is hoisted to the top.
+Therefore, the function can be called before its actual position in the code.
+1.let and const Declarations:
+Unlike var, let and const declarations are hoisted to the top of their block scope, but
+they are not initialized until the actual code execution reaches the declaration. This
+is often referred to as the "temporal dead zone."
+Accessing the variable before the declaration results in a ReferenceError.
+console.log(x); // ReferenceError: Cannot access 'x' before initialization
+let x = 5;
+console.log(x); // 5
+2.Arrow Functions:
+Arrow functions are expressions, and their behavior is similar to variable declarations with let and const.
+They are hoisted to the top of the block scope but
+are not initialized until the actual code execution reaches the declaration.
+sayHello(); // TypeError: sayHello is not a function
+const sayHello = () => {
+console.log("Hello, World!");
+};
+For let and const, hoisting occurs, but accessing the variable before the declaration leads to a ReferenceError.
+Arrow functions are not hoisted like regular function declarations, and trying to use them
+before the declaration results in a TypeError.
+-is hoisting possible on all levels in js?
+Hoisting in JavaScript is applicable at the level of variable and function declarations
+within their respective scopes. It is important to note that hoisting does not occur for the entire script or
+block of code as a whole.
+-callback?
+A callback is a function that is passed as an argument to another function and is executed after
+the completion of some operation.
+Callbacks are often used in scenarios like handling asynchronous tasks like
+function fetchData(url, callback) {
+// Simulating an asynchronous operation (e.g., fetching data from a server)
+setTimeout(() => {
+const data = "This is the fetched data!";
+callback(data);
+}, 2000); // Simulating a 2-second delay
+}
+function processFetchedData(data) {
+console.log("Processing data:", data);
+}
+// Using the fetchData function with a callback
+fetchData("https://example.com/api/data", processFetchedData);
+or
+// Function to fetch data from an API
+const fetchData = (url, callback) => {
+fetch(url)
+.then(response => response.json())
+.then(data => {
+// Call the provided callback with the fetched data
+callback(data);
+})
+.catch(error => {
+console.error('Error fetching data:', error);
+});
+};
+
+// Callback function to be executed with the fetched data
+const handleData = (fetchedData) => {
+setData(fetchedData);
+};
+// useEffect to initiate the fetch when the component mounts
+useEffect(() => {
+const apiUrl = 'https://jsonplaceholder.typicode.com/todos/1';
+// Call the fetchData function with the API URL and the handleData callback
+fetchData(apiUrl, handleData);
+}, []);
+-promise in js?
+Promises in JavaScript are a way to handle asynchronous operations
+A Promise is an object representing the eventual completion or failure of an
+asynchronous operation and its resulting value.
+A Promise can be in one of three states:
+Pending: The initial state; the promise is neither fulfilled nor rejected.
+Fulfilled: The operation completed successfully, and the promise has a resulting value.
+Rejected: The operation failed, and the promise has a reason for the failure.
+example:
+To access the result of a Promise in an API call, you can use the .then() method to handle
+the successful resolution of the Promise. The result of the API call will be available as an
+argument to the callback function passed to .then().
+Additionally, you can use the .catch() method to handle errors if the Promise is rejected.
+/ Function that returns a Promise for fetching data from an API
+const fetchData = () => {
+return fetch('https://jsonplaceholder.typicode.com/todos/1')
+.then(response => {
+// Check if the response is successful (status code 2xx)
+if (!response.ok) {
+throw new Error(`HTTP error! Status: ${response.status}`);
+}
+return response.json();
+});
+};
+
+// Using the fetchData function
+fetchData()
+.then(data => {
+console.log('Data:', data);
+// You can use the data here
+})
+.catch(error => {
+console.error('Error:', error);
+// Handle errors here
+});
+using Promise keyword?
+The Promise keyword is used to create a new Promise object in JavaScript.
+You can use the Promise constructor to wrap asynchronous operations and handle their
+results using the resolve and reject functions.
+Here's an example of using the Promise keyword for an API call:
+const fetchData = () => {
+return new Promise((resolve, reject) => {
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+.then(response => {
+// Check if the response is successful (status code 2xx)
+if (!response.ok) {
+throw new Error(`HTTP error! Status: ${response.status}`);
+}
+return response.json();
+})
+.then(data => {
+// Resolve the Promise with the fetched data
+resolve(data);
+})
+.catch(error => {
+// Reject the Promise with the error
+reject(error);
+});
+});
+};
+- array of promises and one after the other execution required
+If you have an array of Promises and you want to execute them one after
+the other (sequentially), you can use a combination of Array.reduce and the Promise.then chain.
+This ensures that each Promise is executed in sequence, and
+the next Promise starts only when the previous one has resolved.
+// An array of functions returning Promises
+const promiseFunctions = [
+() => new Promise(resolve => setTimeout(() => resolve(1), 1000)),
+() => new Promise(resolve => setTimeout(() => resolve(2), 1000)),
+() => new Promise(resolve => setTimeout(() => resolve(3), 1000)),
+];
+
+// Function to execute promises sequentially
+const executeSequentially = async () => {
+const results = [];
+
+for (const promiseFunction of promiseFunctions) {
+const result = await promiseFunction();
+results.push(result);
+}
+
+return results;
+};
+
+// Using the executeSequentially function
+executeSequentially()
+.then(results => {
+console.log('Results:', results);
+})
+.catch(error => {
+console.error('Error:', error);
+});
+The executeSequentially function uses a for...of loop to iterate over each Promise-generating function in the array.
+It awaits each Promise to ensure they are executed sequentially.
+The then method is used to handle the results when the Promise returned by executeSequentially resolves.
+-es6 features?
+classes, arrow function, modules, varialbles(let const),array methods(map),destructuring, spread opt, ternary opt.
+- == && ===
+Equality Operator (==):
+checks for equality after performing type coercion if the operands are of different types.
+It tries to convert operands to the same type before making the comparison.
+console.log(5 == '5'); // true because the string '5' is coerced into a number for the comparison.
+Strict Equality Operator (===):
+checks for equality without performing type coercion.
+console.log(5 === '5'); // false
+-shallow copy and deep copy.
+A shallow copy creates a new object, but it doesn't create copies of nested objects within the original object.
+Instead, it copies references to those nested objects.
+Shallow copies can be created using methods like Object.assign() or the spread operator (...).
+// Shallow copy using Object.assign()
+const originalObject = { a: 1, b: { c: 2 } };
+const shallowCopy = Object.assign({}, originalObject);
+// Shallow copy using spread operator
+const shallowCopy2 = { ...originalObject };
+In the above examples, changes to b inside shallowCopy or shallowCopy2 will affect the original object's b as well.
+A deep copy creates a new object and recursively copies all nested objects within the original object.
+This results in a completely independent copy.
+const deepCopy = JSON.parse(JSON.stringify(originalObject));
+Libraries like Lodash provide _.cloneDeep() for this purpose.
+// Deep copy using Lodash
+const _ = require('lodash');
+const originalObject = { a: 1, b: { c: 2 } };
+const deepCopy = _.cloneDeep(originalObject);
+With a deep copy, changes to b inside deepCopy will not affect the original object's b.
+-display flex
+default left to right
+flex-direction row default column row-reverse column-reverse
+flex-wrap wrap nowrap wrap-reverse
+flex-flow row wrap, etc
+justify-content default left to right if row , else top to bottom
+align-items default top to bottom if row , else left to right
+align-content along the flex line
+for items:
+order
+flex-grow
+flex-shrink
+flex-basis
+flex
+align-self
+-custom hooks return type?
+No, a custom hook in React cannot directly return UI elements.
+Custom hooks are primarily meant for encapsulating and sharing non-UI logic across components.
+They are not intended to create or return React elements.
+so mostly data
+-copy object different ways? LATER...
+Shallow copy creates a new object with references to the same memory locations as the original object.
+This means that any changes made to the original object will be reflected in the copy.
+Deep copy creates a new object with new memory locations for all of its properties and nested objects or arrays.
+This means that changes made to the original object will not be reflected in the copy.
+shallow copy, you can use the assign() method
+const obj1 = {
+a: 1,
+b: 2,
+};
+const obj2 = Object.assign({}, obj1);
+console.log(obj2); // { a: 1, b: 2 }
+deep copy, you can use the stringify() and parse() methods. The stringify() method converts an object to a
+JSON string, and the parse() method converts a JSON string back to an object.
+const obj1 = {
+a: 1,
+b: {
+c: 3,
+},
+};
+const obj2 = JSON.parse(JSON.stringify(obj1));
+console.log(obj2); // { a: 1, b: { c: 3 } }
+// Cloning the Object with Spread Operator
+let cloneUser = { ...userDetails };
+This is no longer referenced, meaning changing the object's value will not affect the original object.
+- promise.all and promise then and promise hell?
+Promise.all is a method in JavaScript that takes an iterable of promises and returns a single Promise.
+This new Promise resolves when all of the provided
+promises in the iterable have resolved, or rejects if any of the promises are rejected.
+Promise.all(iterable);
+The returned promise will be fulfilled with an array of the resolved values of the input promises
+(in the same order as the input). If any of the promises in the iterable reject, the
+returned promise will be rejected with the reason of the first promise that was rejected.
+const promise1 = Promise.resolve('Hello');
+const promise2 = 42;
+const promise3 = new Promise((resolve, reject) => {
+setTimeout(resolve, 1000, 'World');
+});
+
+Promise.all([promise1, promise2, promise3])
+.then(values => {
+console.log(values); // ['Hello', 42, 'World']
+})
+.catch(error => {
+console.error(error);
+});
+The .then callback receives an array with the resolved values once all promises have been fulfilled.
+If any promise in the array
+rejects, the .catch callback will be triggered with the reason of the first rejected promise.
+-html5 new tags
+better semantics
+<article></article>
+<section></section>
+<nav></nav>
+<header></header>
+<footer></footer>
+<audio></audio>
+<video></video>
+<mark></mark>
+<progress></progress>
+- 4.55 to fixed1 = 4.6
+4.52 to fixed 1 = 4.5 and result is string
+-console.log(7 > 6 > 5) = true > 5 = 1 > 5 = false
+console.log(7 < 6 < 5)=false < 5=0 < 5=true -console.log('2' + 5 + 3)=string '253' console.log(2 + 5 + '3' )='73' .
+  console.log(true + 5)=6 -why only one dom element to be rendered in react? In React, the requirement to have a single
+  parent DOM element returned from a component's render function is a rule imposed by the virtual DOM diffing algorithm
+  used by React for efficient updates. When React renders a component, it creates a virtual representation of the DOM in
+  memory, known as the virtual DOM. This virtual DOM is a lightweight copy of the actual DOM. To optimize the update
+  process, React needs a single root element in the virtual DOM to represent the component. which allows React to
+  efficiently compare the old and new virtual DOM trees and calculate the minimum number of changes required to update
+  the real DOM. If a component returns multiple top-level elements,makes it challenging for React to perform efficient
+  updates, as it would need to reconcile multiple top-level elements separately. To work around this limitation,
+  developers can use a common pattern called a fragment, which allows multiple elements to be returned without adding an
+  extra node to the DOM. Fragments are a lightweight way to group multiple elements without introducing unnecessary
+  nodes in the DOM. Here's an example: const MyComponent=()=> {
+  return (
+  <>
+    <div>Element 1</div>
+    <div>Element 2</div>
+  </>
+  );
+  };
+  -map vs filter
+  map creates a new array containing the results of applying the
+  provided function to each element of the original array.creating a new array with the same length.
+  const newArray = array.map((element, index, array) => {
+  // return transformed element
+  });
+  const numbers = [1, 2, 3, 4, 5];
+  const squaredNumbers = numbers.map((num) => num * num);
+  // squaredNumbers will be [1, 4, 9, 16, 25]
+  const numbers = [1, 2, 3, 4, 5];
+  const squaredNumbers = numbers.map((num) => num >2);
+  // [false, false, true, true, true]
+  filter returns a new array with only the elements for which the provided function returns true.
+  creating a new array that may have fewer elements than the original array.
+  const newArray = array.filter((element, index, array) => {
+  // return true to include the element in the new array
+  });
+  const numbers = [1, 2, 3, 4, 5];
+  const evenNumbers = numbers.filter((num) => num % 2 === 0);
+  // evenNumbers will be [2, 4]
+  const numbers = [1, 2, 3, 4, 5];
+  console.log( numbers.filter((num) => num *num))
+  //[1, 2, 3, 4, 5]
+  Both map and filter do not modify the original array;
+  -css position
+  static
+  position: static; is not positioned in any special way; it is always positioned according
+  to the normal flow of the page
+  Static positioned elements are not affected by the top, bottom, left, and right properties.
+  relative
+  position: relative; is positioned relative to its normal position.
+  top, right, bottom, and left properties will cause it to be adjusted away from its normal position.
+  Other content will not be adjusted to fit into any gap left by the element.
+  fixed
+  position: fixed; is positioned relative to the viewport, which means it always stays in the
+  same place even if the page is scrolled.
+  The top, right, bottom, and left properties are used to position the element.
+  A fixed element does not leave a gap in the page where it would normally have been located.
+  absolute
+  position: absolute; is positioned relative to the nearest positioned ancestor
+  (instead of positioned relative to the viewport, like fixed)
+  However; if an absolute positioned element has no positioned ancestors,
+  it uses the document body, and moves along with page scrolling.
+  Note: Absolute positioned elements are removed from the normal flow, and can overlap elements.
+  div.relative {
+  position: relative;
+  width: 400px;
+  height: 200px;
+  border: 3px solid #73AD21;
+  }
+
+  div.absolute {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  width: 200px;
+  height: 100px;
+  border: 3px solid #73AD21;
+  }
+  sticky
+  position: sticky; is positioned based on the user's scroll position.
+  A sticky element toggles between relative and fixed, depending on the scroll position.
+  It is positioned relative until a given offset position is met in the
+  viewport - then it "sticks" in place (like position:fixed);
+  when you use position: absolute or position: fixed, the element is taken out of the normal flow, and other elements
+  may be positioned as if the absolutely or fixed positioned element does not exist.
+  Elements are then positioned using the top, bottom, left, and right properties.
+  However, these properties will not work unless the position property is set first.
+  -call stack, event loop, callback queue(task queue), microtask queue
+  Asynchronous JavaScript & EVENT LOOP from scratch 🔥 | Namaste JavaScript Ep.15
+  -call apply bind
+  https://www.youtube.com/watch?v=75W8UPQ5l7k&ab_channel=AkshaySaini
+  call, apply and bind method in JavaScript akshay saini
+  -currying
+  https://builtin.com/software-engineering-perspectives/currying-javascript
+  Currying can be a powerful technique in JavaScript, and its usage becomes apparent in scenarios
+  where partial application of functions or the creation of more specialized
+  functions is beneficial. Here are a few common use cases for currying:
+  1.Partial Application:
+  Currying allows you to partially apply arguments to a function, creating a new
+  function with some of the arguments preset.
+  This can be useful in scenarios where you have a function with many parameters, and you want to
+  reuse it with some default values.
+  // Using currying for partial application
+  function add(x, y, z) {
+  return x + y + z;
+  }
+  const curryAdd = curry(add);
+  const add5 = curryAdd(5);
+  const result = add5(3)(2); // Equivalent to add(5, 3, 2)
+  console.log(result); // Output: 10
+  2.Creating Specialized Functions
+  -this keyword in JavaScript
+  In JavaScript, the this keyword is a special keyword that refers to the current execution context or the object
+  to which the current function belongs.
+  The value of this is determined at runtime and depends on how a function is invoked.
+  Global Context:
+  When used outside of any function or object, this refers to the global object (in browsers, it's the window object).
+  console.log(this === window); // Output: true
+  function logThis() {
+  console.log(this === window);
+  }
+  logThis(); // Output: true
+  Function Context:
+  Inside a regular function, this refers to the global object (window in browsers) or undefined in strict mode.
+  Object Method:
+  When a function is a method of an object, this refers to the object that owns the method.
+  const person = {
+  name: 'John',
+  sayHello: function() {
+  console.log('Hello, ' + this.name + '!');
+  }
+  };
+  person.sayHello(); // Output: Hello, John!
+  Constructor Function:
+  When a function is used as a constructor with the new keyword, this refers to the newly created instance of the
+  object.
+  function Dog(name) {
+  this.name = name;
+  }
+  const myDog = new Dog('Buddy');
+  console.log(myDog.name); // Output: Buddy
+  Event Handlers:
+  In event handlers, this often refers to the element that triggered the event.
+  const button = document.getElementById('myButton');
+  button.addEventListener('click', function() {
+  console.log(this); // Output: <button id="myButton">Click me</button>
+  });
+  Arrow Functions:
+  Arrow functions do not have their own this. They inherit the this value from the enclosing scope.
+  const obj = {
+  data: 10,
+  fetchData: function() {
+  setTimeout(() => {
+  console.log(this.data);
+  }, 1000);
+  }
+  };
+  obj.fetchData(); // Output: 10
+  The value of this can be explicitly set using methods like call, apply, or bind
+  to control the context in which a function is executed.
+  -arrow vs normal function
+  -----------------------------------------------------------------------------------------------------------
+  29dec
+  -Math.max(n1, n2,...) .min
+  returns the number with the highest value
+  -Infinity if no arguments are given. Math.max()
+  NaN if one of the arguments is not a number. Math.max(1,"a") Math.max([1,2])
+  function findMaxNumber(arr) {
+  return Math.max(…arr);
+  };
+  -spread opt
+  console.log(typeof [1, 2]); // Output: "object"
+  console.log(typeof [...[1, 2]]); // Output: "object"
+  console.log(Array.isArray([1, 2])); // Output: true
+  console.log(Array.isArray([...[1, 2]])); // Output: true
+  console.log([...[1, 2]]); => ...[1, 2] = [1, 2]
+  console.log(...[1, 2]) == console.log(1, 2); output 1 2
+  The spread syntax expands the array into individual elements.
+  It prints each element of the array separately, with a space in between.
+  const spreadArray = ...[1, 2]; syntax error
+  -compare two strings
+  you can use the localeCompare method or the equality operators (=== or ==)
+  "a".localeCompare("f"); -1
+  "f".localeCompare("a"); 1
+  "f".localeCompare("f"); 0
+  "apple" == "apple" true
+  "apple" == "apples" false
+  "apple" === "apple" true
+  "apple" === "apples" false
+  -[1,2,3,4,[99,11,[12,44,34,442]]]
+  console.log(arr.flat()); //[1, 2, 3, 4, 99, 11, Array(4)]
+  console.log(arr.flat().flat()); //[1, 2, 3, 4, 99, 11, 12, 44, 34, 442]
+  console.log(arr.flat(Infinity)); //[1, 2, 3, 4, 99, 11, 12, 44, 34, 442]
+  console.log(Math.max(...arr.flat(Infinity))); //442

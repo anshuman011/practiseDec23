@@ -1,0 +1,33 @@
+:root {
+    --font-styles : "Fira Sans"
+}
+.somecooleffects1{
+    font-family: var(--font-styles);
+    // background-color: #1C2A44;
+    width: 50%;
+    ul{
+        margin: 5%;
+        width: 450px;
+        display: flex;
+        list-style: none;
+        padding: 25px 0;
+        border-radius: 25px;
+        border: 0.1px solid #099FFF;
+        background-color: #181818;
+        box-shadow: 0 4px 8px #000FFF, 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    li{
+        margin: auto;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+    li:after{
+        display: block;
+    }
+    li:hover{
+        transform: scaleX(1);
+        border-bottom: 2px solid green;
+    }
+}

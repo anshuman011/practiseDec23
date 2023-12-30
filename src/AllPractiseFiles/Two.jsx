@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./SassFiles/Two.scss"
+import '../SassFiles/Two.scss';
 
 export const TwoStopWatch = () =>{
 
