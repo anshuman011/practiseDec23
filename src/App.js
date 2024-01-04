@@ -6,10 +6,12 @@ import './App.css';
 import './AllPractiseFiles/javascriptPRACTISEquestions';
 import './AllPractiseFiles/jsPractiseNamasteJS';
 import './WissenPractise/wissenJsProgram';
+import LoginComponent from './WissenPractise/WissenLoginProject/Components/LoginComponent';
 
 function App() {
   return (
     <div>
+     <LoginComponent /> 
     </div>
 
   );

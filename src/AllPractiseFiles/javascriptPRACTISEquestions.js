@@ -91,5 +91,31 @@ function programs7(n) {
     };
     console.log(result);
 };
-programs7(7);
+// programs7(7);
+
+function programs8(n){
+    var arr = n.split(" ");
+    var arrResultForComparison = [];
+    var  arrResult = [];
+    for(var i = 0;i<arr.length; i++){
+        let singleEle = arr[i].toUpperCase();
+        if(arrResultForComparison.indexOf(singleEle) == -1){
+        arrResultForComparison.push(arr[i].toUpperCase());
+        arrResult.push(arr[i]);
+        }
+    };
+    console.log(arrResult, arrResultForComparison); //[ 'One', 'Two', 'Three', 'Four' ]
+};
+// programs8("One Two Three Four One Two one");
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//24
+function reverseEachWordInASentence(str){
+    console.log(str.split(),typeof str.split()); //['A Big Thanks To Me!'] object
+    console.log(str.split()[0],typeof str.split()[0]); //A Big Thanks To Me! string
+    console.log(str.split()[1], typeof str.split()[1]); //undefined 'undefined'
+    console.log(str.split(""));
+    console.log(str.split(" "));
+};
+reverseEachWordInASentence("A Big Thanks To Me!")
 
