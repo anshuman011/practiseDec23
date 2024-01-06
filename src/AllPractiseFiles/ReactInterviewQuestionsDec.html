@@ -20,76 +20,7 @@
 
 </html>
 interview1 DEC7
--hooks in react? name few hooks?
-In React, hooks are functions that allow functional components to manage state, side effects, and other React
-features that were previously only available in class components. Hooks were introduced in React version 16.8
--Custom Hooks:
-A custom hook is a function that uses other hooks to provide a specific piece of functionality.
--Rules of Hooks:
-Hooks must be called at the top level of the functional component or custom hook
-(not inside loops or conditions).
-Hooks must be called from functional components or custom hooks (not regular JavaScript functions).
--React.memo()
-React.memo() is a HOC that memoizes the rendering of a functional component.
-It is used to prevent unnecessary renders of a component when its props remain the same.
-It performs a shallow comparison of the props to determine whether the component needs to be re-rendered.
-const MyComponent = React.memo(({ data }) => {
-// Component logic
-return <div>{data}</div>;
-});
 -shallow comparison vs deep comparison in js and in react?????????????
--usememo vs usecallback
-Use useCallback when you want to memoize a function, especially when passing it as a prop to child components.
-In React, functional components are re-evaluated on every render. This means that the entire function body
-is executed again when the component re-renders.
-As a result, any functions defined within the component are recreated on each render.
-import React, { useState } from 'react';
-const MyComponent = () => {
-const [count, setCount] = useState(0);
-// This function is recreated on every render
-const handleClick = () => {
-setCount(count + 1);
-};
-return (
-<div>
-  <p>Count: {count}</p>
-  <button onClick={handleClick}>Increment</button>
-</div>
-);
-};
-In the example above, handleClick is a new function created on each render. This isn't always a problem, but if
-you pass this function as a prop to child
-components, it could trigger unnecessary re-renders in those child components.
-This is where useCallback comes in handy. It memoizes the function, so it only creates a new function reference
-when the dependencies change.
-Here's an example using useCallback:
-Copy code
-import React, { useState, useCallback } from 'react';
-
-const MyComponent = () => {
-const [count, setCount] = useState(0);
-
-// This function is memoized and only recreated when `count` changes
-const handleClick = useCallback(() => {
-setCount(count + 1);
-}, [count]);
-
-return (
-<div>
-  <p>Count: {count}</p>
-  <ChildComponent handleClick={handleClick} />
-</div>
-);
-};
-
-const ChildComponent = ({ handleClick }) => {
-// Child component receives memoized handleClick
-return (
-<button onClick={handleClick}>Increment</button>
-);
-};
-
-Use useMemo when you want to memoize a value, such as the result of a computation.
 -So, in summary, state variables established with useState persist across re-renders, and
 their values are updated based on calls to the corresponding set functions.
 They don't automatically reset to their default values during each re-render.
@@ -447,14 +378,6 @@ It awaits each Promise to ensure they are executed sequentially.
 The then method is used to handle the results when the Promise returned by executeSequentially resolves.
 -es6 features?
 classes, arrow function, modules, varialbles(let const),array methods(map),destructuring, spread opt, ternary opt.
-- == && ===
-Equality Operator (==):
-checks for equality after performing type coercion if the operands are of different types.
-It tries to convert operands to the same type before making the comparison.
-console.log(5 == '5'); // true because the string '5' is coerced into a number for the comparison.
-Strict Equality Operator (===):
-checks for equality without performing type coercion.
-console.log(5 === '5'); // false
 -shallow copy and deep copy.
 A shallow copy creates a new object, but it doesn't create copies of nested objects within the original object.
 Instead, it copies references to those nested objects.

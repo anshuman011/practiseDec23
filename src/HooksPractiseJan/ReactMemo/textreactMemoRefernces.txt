@@ -1,0 +1,20 @@
+-react memo
+React Render Tutorial - 8 - React memo Codevolution
+link: https://www.youtube.com/watch?v=bZeBToIqaR4&ab_channel=Codevolution
+________________________________________________________________________________
+<ReactMemoChild />
+the child component rerenders any time the parent is rerendered , does not matters if
+no props is passed to it or if the props passed to it are changed.
+so to avoid it we use React.memo
+-React.memo()
+React.memo() is a HOC that memoizes the rendering of a functional component.
+It is used to prevent unnecessary renders of a component when its props remain the same.
+It performs a SHALLOW comparison of the props to determine whether the component needs to be re-rendered.
+const MyComponent = React.memo(({ data }) => {
+// Component logic
+return <div>{data}</div>;
+});
+React will skip the rendering and use the render output from last rendering.
+________________________________________________________________________________
+DONE
+________________________________________________________________________________

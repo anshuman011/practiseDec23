@@ -1,0 +1,29 @@
+
+-usememo vs usecallback
+On every rerender, functional components are recreated and the entire body is re-evaluated in react.
+when the dependencies change.
+useCallback when you want to memoize a expensive function, especially 
+when passing it as a prop to child components.
+it memoizes the function, so it only creates a new function reference only when the dependencies change.
+useMemo when you want to memoize result of a expensive function.
+it memoizes the result of the function, so it only re-evaluates only when the dependencies change.
+The difference is that useCallback returns its function when the dependencies 
+while useMemo calls its function and returns the result.
+useCallback returns its function uncalled so you 
+can call it later, while useMemo calls its function and returns the result
+example:
+function foo() {
+  return 'bar';
+}
+const memoizedCallback = useCallback(foo, []);
+const memoizedResult = useMemo(foo, []);
+memoizedCallback;// ƒ foo() { return 'bar';}
+memoizedResult; // 'bar'
+memoizedCallback(); // 'bar'
+memoizedResult(); // 🔴 TypeError
+_______________________
+What is memoization?
+In simple terms, memoization is a process that allows us to cache the values of recursive/expensive function
+calls so that the next time the function is called with the same argument(s), the cached value is returned
+rather than having to re-compute the function.
+_______________________

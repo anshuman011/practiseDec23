@@ -7,10 +7,45 @@ Throttling in Javascript | Walmart Frontend Interview Question Akshay Saini
 ReactJS Tutorial - 32 - Error Boundary Codevolution
 -portals in react
 ReactJS Tutorial - 31 - Portals Codevolution
--hooks
-React Hooks Course - All React Hooks Explained PedroTech
 -higher order components hoc
 ReactJS Tutorial - 33 - Higher Order Components (Part 1) Codevolution
 ReactJS Tutorial - 34 - Higher Order Components (Part 2) Codevolution
 ReactJS Tutorial - 35 - Higher Order Components (Part 3) Codevolution
-
+_____________________________________________________________________________________________________________
+== && ===
+equality comparison operators.
+== for abstract equality and === for strict equality/Referential equality
+Equality Operator (==):
+checks for equality after performing type coercion if the operands are of different types.
+It tries to convert operands to the same type before making the comparison.
+console.log(5 == '5'); // true because the string '5' is coerced into a number for the comparison.
+Strict Equality Operator (===):
+checks for equality without performing type coercion.
+true only if the operands are of the same type and the contents match.
+console.log(5 === '5'); // false
+extra example:
+const greeting = 'hello';
+const otherGreeting = 'hello';
+'hello' === 'hello'; // true
+greeting === otherGreeting; // true
+function foo() {
+return 'bar';
+}
+const fooReference = foo;
+foo === foo; // true
+foo === fooReference; // true
+const otherFoo = function() {
+return `bar`;
+};
+const anotherFoo = () => 'bar';
+function sameFoo() {
+return 'bar';
+}
+foo === otherFoo; // false
+foo === anotherFoo; // false
+foo === sameFoo; // false
+two distinct objects are never equal for either strict or abstract comparisons
+an expression comparing objects is only true if the operands reference the same object
+and functions are objects in JavaScript
+foo and sameFoo have the same definition but reference two different objects.
+_____________________________________________________________________________________________________________
