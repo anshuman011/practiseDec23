@@ -114,8 +114,9 @@ function reverseEachWordInASentence(str){
     console.log(str.split(),typeof str.split()); //['A Big Thanks To Me!'] object
     console.log(str.split()[0],typeof str.split()[0]); //A Big Thanks To Me! string
     console.log(str.split()[1], typeof str.split()[1]); //undefined 'undefined'
-    console.log(str.split(""));
-    console.log(str.split(" "));
+    console.log(str.split("")); //[ 'A', ' ', 'B', 'i', 'g',' ', 'T', 'h', 'a', 'n','k', 's', ' ', 'T', 'o',' ', 'M', 'e', '!'] object
+    console.log(str.split(" "));//[ 'A', 'Big', 'Thanks', 'To', 'Me!' ] object
+    console.log(str.split(" ").join())
 };
-reverseEachWordInASentence("A Big Thanks To Me!")
+reverseEachWordInASentence("A Big Thanks To Me!");
 

@@ -7,11 +7,13 @@ import './AllPractiseFiles/javascriptPRACTISEquestions';
 import './AllPractiseFiles/jsPractiseNamasteJS';
 import './WissenPractise/wissenJsProgram';
 import LoginComponent from './WissenPractise/WissenLoginProject/Components/LoginComponent';
+import { UseEffect_useState } from './HooksPractiseJan/UseEffect_UseState';
 
 function App() {
   return (
     <div>
-     <LoginComponent /> 
+      <UseEffect_useState/>
+     {/* <LoginComponent />  */}
     </div>
 
   );
