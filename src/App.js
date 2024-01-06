@@ -1,5 +1,5 @@
+import { ReactMemoParent } from './AllPractiseFiles/HooksPractiseJan';
 import './App.css';
-import { ReactMemoParent, UseMemo_UseCallBackParent } from './HooksPractiseJan';
 // import './AllPractiseFiles/javascriptPRACTISEquestions';
 // import './AllPractiseFiles/jsPractiseNamasteJS';
 // import './WissenPractise/wissenJsProgram';
@@ -7,7 +7,6 @@ import { ReactMemoParent, UseMemo_UseCallBackParent } from './HooksPractiseJan';
 function App() {
   return (
     <div className='App'>
-      <ReactMemoParent/>
     </div>
 
   );
