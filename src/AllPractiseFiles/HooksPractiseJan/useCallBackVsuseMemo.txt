@@ -7,7 +7,7 @@ when passing it as a prop to child components.
 it memoizes the function, so it only creates a new function reference only when the dependencies change.
 useMemo when you want to memoize result of a expensive function.
 it memoizes the result of the function, so it only re-evaluates only when the dependencies change.
-The difference is that useCallback returns its function when the dependencies 
+The difference is that useCallback returns its function when the dependencies change
 while useMemo calls its function and returns the result.
 useCallback returns its function uncalled so you 
 can call it later, while useMemo calls its function and returns the result

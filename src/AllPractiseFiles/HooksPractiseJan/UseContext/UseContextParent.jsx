@@ -7,15 +7,15 @@ import { UseContextChildB } from "./UseContextChildB"
 
 export const AppContext = createContext(null);
 
-export const UseContextParent = () =>{
+export const UseContextParent = () => {
 
     const [userName, setUserName] = useState("");
-    return(
+    return (
         <div>
-        <AppContext.Provider value={{userName, setUserName}}>
-        <UseContextChildA>Button from child A to update value in child b ,as children</UseContextChildA>
-        <UseContextChildB></UseContextChildB>
-        </AppContext.Provider>
+            <AppContext.Provider value={{ userName, setUserName }}>
+                <UseContextChildA>Button from child A to update value in child b ,as children</UseContextChildA>
+                <UseContextChildB></UseContextChildB>
+            </AppContext.Provider>
         </div>
     )
 }

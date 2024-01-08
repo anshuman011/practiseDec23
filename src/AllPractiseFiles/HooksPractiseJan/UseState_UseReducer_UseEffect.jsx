@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState } from "react";
 // useState
 //funtions event passing
 // in js we have to grab the dom element and manually update the ui
-//react does that automatically everytime a state is changed if useState is used
+//react does that automatically everytime a state is changed if useState is used/ie state updates or parentis rerendered
 export const UseStateHook = () => {
     let counterJs = 0;
     const [counterReact, setCounterReact] = useState(0)

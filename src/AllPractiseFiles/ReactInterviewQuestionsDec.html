@@ -127,58 +127,7 @@ return (
 -parent calls child component function
 it is generally not recommended for a parent component to directly call a function defined in a
 child component due to the unidirectional data flow principles.
-However, in certain situations, you might use a ref to access and call a
-function in a child component. Here's an example demonstrating this approach:
-// ParentComponent.jsx
-import React, { useRef } from 'react';
-import ChildComponent from './ChildComponent';
-
-function ParentComponent() {
-const childRef = useRef(null);
-
-const handleButtonClick = () => {
-if (childRef.current) {
-childRef.current.childFunction();
-}
-};
-
-return (
-<div>
-  <ChildComponent ref={childRef} />
-  <button onClick={handleButtonClick}>Call Child Function</button>
-</div>
-);
-}
-
-// ChildComponent.jsx
-import React, { forwardRef } from 'react';
-
-const ChildComponent = forwardRef((props, ref) => {
-const childFunction = () => {
-console.log('Child function invoked!');
-// Add your logic here
-};
-
-// Expose the childFunction through the ref
-React.useImperativeHandle(ref, () => ({
-childFunction,
-}));
-
-return (
-<div>
-  {/* Your child component UI */}
-</div>
-);
-});
-
-export default ChildComponent;
-In this example, the useRef hook is used to create a mutable object (childRef).
-This ref is passed to the ChildComponent as a prop and then assigned to the ref parameter of the forwardRef function.
-The useImperativeHandle hook is used to expose the childFunction to the parent component.
-Keep in mind that directly calling functions in child components from a parent component goes against the
-typical React design patterns. It's usually better to lift state and functions to a common ancestor or use other
-communication mechanisms like callbacks via props to maintain a
-more predictable and maintainable code structure.
+useRef and useImerptiveHandle
 - state updates in React are asynchronous, and the new state may not be immediately available after calling setCount.
 console.log("prev")
 setCount((prev)=>prev+1)

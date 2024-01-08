@@ -5,6 +5,7 @@ ________________________________________________________________________________
 <ReactMemoChild />
 the child component rerenders any time the parent is rerendered , does not matters if
 no props is passed to it or if the props passed to it are changed.
+A component is rerendered when state changes or parent is rerendered.
 so to avoid it we use React.memo
 -React.memo()
 React.memo() is a HOC that memoizes the rendering of a functional component.

@@ -10,7 +10,7 @@ export const ReactMemoParent = () => {
             <button onClick={() => setToggle(!toggle)}>Toggle To Show Use Of ReactMemo</button>
             {toggle && <p>TOGGLED</p>}
             {/* <ReactMemoChild />  Rerenders everytime parent is rerendered , if ReactMemo is not used */}
-            {/* <ReactMemoChild name={name}/>  Rerenders everytime parent is rerendered , if ReactMemo is not used */}
+            {/* <ReactMemoChild name={name}/>  Rerenders everytime parent is rerendered ,even if name is not changed, if ReactMemo is not used */}
             {/* <ReactMemoChild />//Now not rerenders everytime parent is rerendered as ReactMemo is used */}
             <ReactMemoChild name={name}/>
             {/* Now not rerenders everytime parent is rerendered as ReactMemo is used, but rerenders when actual
