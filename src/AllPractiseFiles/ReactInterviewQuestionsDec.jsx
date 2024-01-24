@@ -1,90 +1,6 @@
 import React, { useEffect } from "react";
 
-//ReactInterviewQuestionsDec
-export const Program1 = () => {
-    // print 1 after 1 second, 2 after 2 second,etc
-    const [num, setNum] = React.useState(0);
-
-    useEffect(() => {
-        const printNumbers = (i) => {
-            if (i <= 10) {
-                setTimeout(() => {
-                    console.log(i);
-                    setNum(i);
-                    printNumbers(i + 1);
-                }, i * 1000);
-            }
-        };
-
-        printNumbers(1);
-
-        const printNumbers1 = () => {
-            for (var n = 1; n <= 10; n++) {
-                console.log(n, "n outside settimeout");
-                setTimeout(() => {
-                    console.log(n, "n inside settimeout");
-                    console.log(n);
-                    // setNum(n)
-                }, n * 1000)
-            };
-        };
-        // printNumbers1();
-
-        const checkSet = () => {
-            //     //setCount is asynch
-            //     console.log("prev")
-            //     setCount((prev)=>prev+1).then(()=>{
-            //         console.log("next")
-            //     })
-            // }
-        };
-        checkSet();
-    }, []);
-    return (
-        <p>{num}</p>
-    );
-};
-
-export const Program2 = () => {
-    const input = "a/b/c/d/../e/./f";
-    // Output: a/b/c/e/f
-
-    function directoryPath(input) {
-        const smallParts = input.split('/');
-        const result = [];
-        for (const i of smallParts) {
-            console.log(i);
-            if (i === "..") {
-                result.pop();
-            }
-            else if (i !== '.') {
-                result.push(i);
-            }
-        }
-        console.log(result);
-        console.log(result.join('/'))
-        return result.join('/');
-    }
-
-    directoryPath(input);
-    return (<div></div>)
-};
-
 export const Program3 = () => {
-    // consecutive array parts should be equal to sum and yes/no and how many
-    // Input1: 
-    // arr = [43, 22, 25, 10, 5, 7]
-    // sum = 12
-    // Output1: Yes 2
-    // Input2: 
-    // arr = [43, 22, 25, 10, 5, 7]
-    // sum = 40
-    // Output2: Yes 3
-    // Input3: 
-    // arr = [43, 22, 25, 10, 5, 7]
-    // sum = 32
-    // Output: No
-
     const arr = [1, 2, 3, 4, 5];
     const sumRequired = 6;
     const sumPossible = (arr, sumRequired) => {
@@ -119,19 +35,6 @@ export const Program3 = () => {
 
     return (<div>
     </div>)
-};
-
-export const Program4 = () => {
-    //update only one element of object
-    // const [person, setPerson] = useState({
-    //     name:"anshuman",
-    //     age:"10"
-    //     });
-    //     onChange={()=>{
-    //     setPerson((prevState)=>{...preState,
-    //     age:"20"
-    //     })
-    //     }}
 };
 
 export const Program5 = () => {
@@ -318,12 +221,10 @@ export const Program5 = () => {
     //     }
     //     test();
     // Gaurav Prajapati2: 30 PM
-    // =======================
     // for(var i=0;i<5;i++){
     //     setTimeout(()=>console.log(i),100);
     // }
     // Gaurav Prajapati2:34 PM
-    // ===========================
     // INPUT: [ 5, "1","a", 3, 4, 5, 7, 8, 9, 5, 3, 6]
     // unique no OUTPUT: [ 5, 1, 3, 4, 7, 8, 9, 6]
     // Gaurav Prajapati2:45 PM
@@ -466,17 +367,3 @@ export const Program5 = () => {
     //    console.log("outside");
 
 };
-
-export const Program6 = () => {
-    let arr = [9, 4, 3, 2, 4, 5, 9, 9, 4, 2, 1];
-    let result = {};
-    function repeatedNum(arr) {
-        for (let i = 0; i < arr.length; i++) {
-            if (Object.keys(result).indexOf(arr[i]) == -1)
-                result = { ...result, [arr[i]]: 1 }
-            else result = {...result, [result.arr[i]] : result.arr[i] + 1};
-        };
-        return result;
-    }
-    console.log(repeatedNum(arr))
-}

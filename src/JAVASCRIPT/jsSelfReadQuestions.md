@@ -1,0 +1,5 @@
+https://www.fullstack.cafe/blog/javascript-code-interview-questions
+https://medium.com/@a9kitsharma/javascript-interview-questions-and-answers-1c155c869aec QUESTIONS COVERED.
+https://www.geeksforgeeks.org/7-javascript-concepts-that-every-developer-must-know/#1-scope QUESTIONS COVERED.
+__________________________________________________________________________________________________
+__________________________________________________________________________________________________

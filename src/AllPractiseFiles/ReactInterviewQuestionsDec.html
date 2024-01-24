@@ -1,26 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <style>
-    .question {
-      color: blue;
-      font-weight: bold;
-    }
-
-    .answer {
-      color: green;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="question">mm</div>
-</body>
-
-</html>
 interview1 DEC7
--shallow comparison vs deep comparison in js and in react?????????????
+-shallow comparison vs deep comparison in js and in react???
 -So, in summary, state variables established with useState persist across re-renders, and
 their values are updated based on calls to the corresponding set functions.
 They don't automatically reset to their default values during each re-render.
@@ -39,42 +18,13 @@ const MyParentComponent = () => (
 );
 React.lazy(() => import('./MyLazyComponent')) returns a Promise that resolves to the module containing
 the MyLazyComponent.
-The component is loaded lazily only when it's needed.
 The React.Suspense component is used to specify a fallback UI while the lazy component is being loaded.
 So, to answer your question, the loading of a lazily loaded component using React.lazy is asynchronous.
 The component is loaded in the background, and the rest of your application can continue to render and
 function while the lazy component is being fetched.
-It's important to note that React.lazy is designed for use with the Suspense component.
-If you're using it without Suspense, it won't behave as expected. Suspense is a way to handle the loading of
-asynchronous components and show fallback content while the component is loading.
--synch vs asynch
-js is sync singlethreaded non-blocking language
-Synchronous operations are executed one after the other in a sequential manner. Each operation must complete
-before the next one starts.
-In JavaScript, most operations are synchronous by default.
-console.log('Start');
-// Synchronous operation
-function add(a, b) {
-return a + b;
-}
-const result = add(2, 3);
-console.log('Result:', result);
-console.log('End');
-//
-Start
-Result: 5
-End
-Asynchronous operations allow the program to continue executing while waiting for some task to complete.
+If you're using it without Suspense, it won't behave as expected.
+_
 JavaScript achieves asynchrony through features like callbacks, promises, and async/await.
-console.log('Start');
-// Asynchronous operation using setTimeout
-setTimeout(() => {
-console.log('Async operation completed');
-}, 2000);
-console.log('End');
-Start
-End
-Async operation completed
 -useeffect how not to get called first time?
 If you want to skip the execution of useEffect during the initial render, you can use a simple boolean flag.
 Here's a straightforward example:
@@ -94,10 +44,6 @@ console.log('useEffect ran after the initial render');
 return <div>Your component content here</div>;
 };
 export default MyComponent;
-isInitialRender is a state variable that is initially set to true.
-During the initial render, the useEffect is skipped by checking the value of isInitialRender.
-The effect doesn't run during the initial render.
-After the initial render, isInitialRender is updated to false, allowing the effect to run on subsequent renders.
 -how child component can call a function defined in parent component?
 // ChildComponent.jsx
 import React from 'react';
@@ -125,9 +71,7 @@ return (
 );
 };
 -parent calls child component function
-it is generally not recommended for a parent component to directly call a function defined in a
-child component due to the unidirectional data flow principles.
-useRef and useImerptiveHandle
+useRef and useImerptiveHandle and callback functions arguments for value grabbing as well
 - state updates in React are asynchronous, and the new state may not be immediately available after calling setCount.
 console.log("prev")
 setCount((prev)=>prev+1)
@@ -150,86 +94,6 @@ useEffect(() => {
 console.log('Count updated:', count);
 console.log('next');
 }, [count]);
--hoisting in js
-Hoisting is a behavior in JavaScript where variable and function declarations are moved to the top of their
-containing scope during the compilation phase. This means that regardless of where the declarations appear
-in the code, they are effectively "hoisted" to the top.
-Here are two common scenarios where hoisting occurs:
-1.Variable Hoisting:
-console.log(x); // undefined
-var x = 5;
-console.log(x); // 5
-It's important to note that only the declaration is hoisted, not the initialization.
-So, the variable is accessible but not assigned a value until the corresponding line of code is reached.
-2.Function Hoisting:
-sayHello(); // "Hello, World!"
-function sayHello() {
-console.log("Hello, World!");
-}In this case, the entire function declaration function sayHello() { ... } is hoisted to the top.
-Therefore, the function can be called before its actual position in the code.
-1.let and const Declarations:
-Unlike var, let and const declarations are hoisted to the top of their block scope, but
-they are not initialized until the actual code execution reaches the declaration. This
-is often referred to as the "temporal dead zone."
-Accessing the variable before the declaration results in a ReferenceError.
-console.log(x); // ReferenceError: Cannot access 'x' before initialization
-let x = 5;
-console.log(x); // 5
-2.Arrow Functions:
-Arrow functions are expressions, and their behavior is similar to variable declarations with let and const.
-They are hoisted to the top of the block scope but
-are not initialized until the actual code execution reaches the declaration.
-sayHello(); // TypeError: sayHello is not a function
-const sayHello = () => {
-console.log("Hello, World!");
-};
-For let and const, hoisting occurs, but accessing the variable before the declaration leads to a ReferenceError.
-Arrow functions are not hoisted like regular function declarations, and trying to use them
-before the declaration results in a TypeError.
--is hoisting possible on all levels in js?
-Hoisting in JavaScript is applicable at the level of variable and function declarations
-within their respective scopes. It is important to note that hoisting does not occur for the entire script or
-block of code as a whole.
--callback?
-A callback is a function that is passed as an argument to another function and is executed after
-the completion of some operation.
-Callbacks are often used in scenarios like handling asynchronous tasks like
-function fetchData(url, callback) {
-// Simulating an asynchronous operation (e.g., fetching data from a server)
-setTimeout(() => {
-const data = "This is the fetched data!";
-callback(data);
-}, 2000); // Simulating a 2-second delay
-}
-function processFetchedData(data) {
-console.log("Processing data:", data);
-}
-// Using the fetchData function with a callback
-fetchData("https://example.com/api/data", processFetchedData);
-or
-// Function to fetch data from an API
-const fetchData = (url, callback) => {
-fetch(url)
-.then(response => response.json())
-.then(data => {
-// Call the provided callback with the fetched data
-callback(data);
-})
-.catch(error => {
-console.error('Error fetching data:', error);
-});
-};
-
-// Callback function to be executed with the fetched data
-const handleData = (fetchedData) => {
-setData(fetchedData);
-};
-// useEffect to initiate the fetch when the component mounts
-useEffect(() => {
-const apiUrl = 'https://jsonplaceholder.typicode.com/todos/1';
-// Call the fetchData function with the API URL and the handleData callback
-fetchData(apiUrl, handleData);
-}, []);
 -promise in js?
 Promises in JavaScript are a way to handle asynchronous operations
 A Promise is an object representing the eventual completion or failure of an
@@ -472,50 +336,6 @@ console.log(7 < 6 < 5)=false < 5=0 < 5=true -console.log('2' + 5 + 3)=string '25
   console.log( numbers.filter((num) => num *num))
   //[1, 2, 3, 4, 5]
   Both map and filter do not modify the original array;
-  -css position
-  static
-  position: static; is not positioned in any special way; it is always positioned according
-  to the normal flow of the page
-  Static positioned elements are not affected by the top, bottom, left, and right properties.
-  relative
-  position: relative; is positioned relative to its normal position.
-  top, right, bottom, and left properties will cause it to be adjusted away from its normal position.
-  Other content will not be adjusted to fit into any gap left by the element.
-  fixed
-  position: fixed; is positioned relative to the viewport, which means it always stays in the
-  same place even if the page is scrolled.
-  The top, right, bottom, and left properties are used to position the element.
-  A fixed element does not leave a gap in the page where it would normally have been located.
-  absolute
-  position: absolute; is positioned relative to the nearest positioned ancestor
-  (instead of positioned relative to the viewport, like fixed)
-  However; if an absolute positioned element has no positioned ancestors,
-  it uses the document body, and moves along with page scrolling.
-  Note: Absolute positioned elements are removed from the normal flow, and can overlap elements.
-  div.relative {
-  position: relative;
-  width: 400px;
-  height: 200px;
-  border: 3px solid #73AD21;
-  }
-
-  div.absolute {
-  position: absolute;
-  top: 80px;
-  right: 0;
-  width: 200px;
-  height: 100px;
-  border: 3px solid #73AD21;
-  }
-  sticky
-  position: sticky; is positioned based on the user's scroll position.
-  A sticky element toggles between relative and fixed, depending on the scroll position.
-  It is positioned relative until a given offset position is met in the
-  viewport - then it "sticks" in place (like position:fixed);
-  when you use position: absolute or position: fixed, the element is taken out of the normal flow, and other elements
-  may be positioned as if the absolutely or fixed positioned element does not exist.
-  Elements are then positioned using the top, bottom, left, and right properties.
-  However, these properties will not work unless the position property is set first.
   -call stack, event loop, callback queue(task queue), microtask queue
   Asynchronous JavaScript & EVENT LOOP from scratch 🔥 | Namaste JavaScript Ep.15
   -call apply bind

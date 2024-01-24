@@ -1,24 +1,3 @@
-// console.log(count1);
-console.log(abc1);
-let count1 = 0;
-var abc1 = 0;
-function programs1() {
-    console.log("uii");
-    // console.log(count);
-    console.log(count1, abc1);
-    console.log(abc);
-    let count = 0;
-    var abc = 0;
-    (function immediate() {
-        if (count === 0) {
-            let count = 1;
-            console.log(count); // What is logged?
-        }
-        console.log(count); // What is logged?
-    })();
-};
-// programs1();
-
 function programs2(str) {
     //palindrome (reads the same forwards and backwards)
     console.log(str == str.split("").reverse().join(""));
