@@ -1,8 +1,13 @@
-
-
+whats manadorty in react while creating a list of components?
+the key attribute -Useful for react to effeciently update the ui by uniquely identifying which items have been changed, removed or added.
+why not index as key?
+bcoz when an list(array) is modified then all the index of all the elements gets updated,so react may be rerendering more components unneccessarily.keys dont remain stable when index is used.
+_______________________________________________________________________________________________
 //pending
+Pure vs Impure Components in React?
+Chatgpt
 velotio
-key not index why , why not direct change object value why setfunctions,updating store in one tab will update in next tab as well? how www.google.com works when in browser typed.
+why not direct change object value why setfunctions,updating store in one tab will update in next tab as well? how www.google.com works when in browser typed.
 realdom vs virtual dom
 class based vs function based
 redux workflow

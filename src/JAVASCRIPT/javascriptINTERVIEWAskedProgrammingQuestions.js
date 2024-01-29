@@ -1,6 +1,36 @@
 //24
-function reverseString(str) {
-    //Problem: Reverse a string with and without methods
+//Question:input: camel case to Snake Case WISSEN input:thisIsATest output:This_Is_A_Test
+//camelCaseToSnakeCase("thisIsATest")
+function camelCaseToSnakeCase(str) {
+    let result = "";
+    for (let i of str) {
+        if (i.toUpperCase() == i) {
+            result += "_";
+        }
+        result += i;
+    }
+    result = result.charAt(0).toUpperCase() + result.slice(1);
+    console.log(result);
+}
+
+//Question: remove duplicates from an array/string
+removeDuplicatesFromAnArray([1,2,3,4,5,1,2,3])
+function removeDuplicatesFromAnArray(arr){
+    // method 1
+    // let new_Arr = [];
+    // arr.forEach((a)=>{
+    //     if(! (a in new_Arr)){
+    //         new_Arr.push(a)
+    //     }
+    // })
+    //method 2 using set
+    let new_Arr = [...new Set(arr)]
+    console.log(new_Arr)
+}
+
+//Question: Reverse a string with and without methods input: Hi World! output: !dlroW iH
+// reverseCompleteString("Hi World!");
+function reverseCompleteString(str) {
     /* let reversedString = '';
     for(let i of str){
         console.log(i);
@@ -19,10 +49,16 @@ function reverseString(str) {
     }
     console.log(reverseStringUsingRecursion(str));
 }
-// reverseString("Hi World!");
 
+//Question: Reverse each word in a string input: What you want output: tahW uoy tnaw
+// reverseEachWordInASting("What you want");
+function reverseEachWordInASting(str) {
+    console.log(str.split(' ').map(a => a.split('').reverse().join('')).join(" "))
+}
+
+//Question: input = "a/b/c/d/../e/./f"; Output: a/b/c/e/f
+// stringInputOutput("a/b/c/d/../e/./f");
 function stringInputOutput(str) {
-    //Problem: input = "a/b/c/d/../e/./f"; Output: a/b/c/e/f
     console.log(str.split("/"));
     let newStr = [];
     str.split("/").forEach((s) => {
@@ -33,26 +69,23 @@ function stringInputOutput(str) {
     newStr = newStr.join("/")
     console.log(newStr);
 }
-// stringInputOutput("a/b/c/d/../e/./f");
 
+//Question: capitalize first letter of each word in a space separated string input: hOw ARe yOu output: How Are you 
+// capitalizeFirstLetterOFEachWordInASpaceSeparatedString("hOw ARe yOu");
 function capitalizeFirstLetterOFEachWordInASpaceSeparatedString(str) {
-    // problem capitalize first letter of each word in a space separated string
-    // input: hOw ARe yOu
-    // output: How Are you 
     let newStr = str.split(" ");
-    // console.log(newStr.slice(0,1), newStr.slice(newStr.indexOf("hOw")+1));
     newStr = newStr.map((s) => s[0].toUpperCase() + s.slice(1).toLowerCase());
     newStr = newStr.join(" ");
-    console.log(newStr)
+    console.log(newStr);
 }
-// capitalizeFirstLetterOFEachWordInASpaceSeparatedString("hOw ARe yOu");
 
+//Question: convert deeply  nested array into flat array
+// console.log(convertDeeplyNestedArrayIntoFlatArray([1,23,4,5,6,7,[2,3,42,2,434,[433,2,1,3,4,22,11]]]));
 let flatArrResult = [];
 function convertDeeplyNestedArrayIntoFlatArray(arr) {
-    //Problem: convert deeply  nested array into flat array
     // method 1:
     // console.log(arr.flat(Infinity))
-    //method 2:
+    // method 2:
     for (let i = 0; i < arr.length; i++) {
         console.log(arr[i])
         if (Array.isArray(arr[i])) {
@@ -64,11 +97,11 @@ function convertDeeplyNestedArrayIntoFlatArray(arr) {
     }
     return flatArrResult;
 }
-// console.log(convertDeeplyNestedArrayIntoFlatArray([1,23,4,5,6,7,[2,3,42,2,434,[433,2,1,3,4,22,11]]]));
 
+
+//Question: frequency of each element in an array
+// frequencyOfElementsInAnArray([9, 4, 3, 2, 4, 5, 9, 9, 4, 2, 1, "A", "A", "B"])
 function frequencyOfElementsInAnArray(arr) {
-    //Problem: frequency of each element in an array
-    console.log(arr)
     let frequecyCounter = {};
     arr.forEach((n) => {
         if (n in frequecyCounter) {
@@ -80,14 +113,45 @@ function frequencyOfElementsInAnArray(arr) {
     })
     console.log(frequecyCounter);
 }
-// frequencyOfElementsInAnArray([9, 4, 3, 2, 4, 5, 9, 9, 4, 2, 1, "A", "A", "B"])
+//Question: highest and lowest occuring character in a string/arrayinput : "school" output : o : 2times and min s,c,h,l : 1times
+// highestLowestFrequencyChar("school");
+function highestLowestFrequencyChar(input) {
+    let frequencyMap = [];
+    let newInput;
+    if (typeof input == "string") newInput = input.split("");
+    else if (Array.isArray(input)) newInput = input;
+    for (let i of newInput) {
+        // if (i in frequencyMap) {
+        //     frequencyMap[i]++;
+        // }
+        // else frequencyMap[i] = 1;
+        // or
+        frequencyMap[i] = (frequencyMap[i] || 0) + 1
+    }
+    let finalFrequencyMapMax = [];
+    let finalFrequencyMapMin = [];
+    const maxFrequency = Math.max(...Object.values(frequencyMap));
+    const minFrequency = Math.min(...Object.values(frequencyMap));
+    for (let i in frequencyMap) {
+        if (frequencyMap[i] == maxFrequency) {
+            finalFrequencyMapMax.push(i)
+        }
+        if (frequencyMap[i] == minFrequency) {
+            finalFrequencyMapMin.push(i)
+
+        }
+    }
+    console.log(`Max occuring is ${finalFrequencyMapMax.join(",")} at ${maxFrequency}`);
+    console.log(`Min occuring is ${finalFrequencyMapMin.join(",")} at ${minFrequency}`);
+}
 
 //pending
+//Question: consecutive array parts should be equal to sum and yes/no and how many
+// Input1: // arr = [43, 22, 25, 10, 5, 7] // sum = 12 // Output1: Yes 2
+// Input2:  // arr = [43, 22, 25, 10, 5, 7] // sum = 40 // Output2: Yes 3
+// Input3:  // arr = [43, 22, 25, 10, 5, 7] // sum = 32 // Output: No
+// consecutiveEqualsSum([43, 22, 25, 10, 5, 7], 25);
 function consecutiveEqualsSum(arr, sumRequired) {
-    //problem: consecutive array parts should be equal to sum and yes/no and how many
-    // Input1: // arr = [43, 22, 25, 10, 5, 7] // sum = 12 // Output1: Yes 2
-    // Input2:  // arr = [43, 22, 25, 10, 5, 7] // sum = 40 // Output2: Yes 3
-    // Input3:  // arr = [43, 22, 25, 10, 5, 7] // sum = 32 // Output: No
     let sumOfElements;
     let noOfElementsRequired;
     let result;
@@ -119,10 +183,11 @@ function consecutiveEqualsSum(arr, sumRequired) {
         console.log("YES", result)
     }
 }
-consecutiveEqualsSum([43, 22, 25, 10, 5, 7], 25);
 
 // __________________________________________________________________________________________________________
-// Questions based on different concepts
+//Question based on different concepts
+//Question: async
+// promiseAsyncAwaitProblem();
 function promiseAsyncAwaitProblem() {
     const myPromise = () => Promise.resolve('I have resolved!');
 
@@ -139,4 +204,39 @@ function promiseAsyncAwaitProblem() {
     firstFunction();
     secondFunction();
 }
-promiseAsyncAwaitProblem();
+// second
+// I have resolved!
+// I have resolved!
+// second
+
+//Question: task queue
+// let flag = true;
+// let count = 0;
+// setTimeout(()=>{
+//   flag = false;
+// },1000)
+// while(flag){
+//   console.log(count++);
+// }
+// or
+// let flag = true;
+// let count = 0;
+// while(flag){
+//   console.log(count++);
+// }
+// setTimeout(()=>{
+//   flag = false;
+// },1000)
+// answer: code executes indifinetly since after 1 second when settimeout tries to execute it doesnt find callback queue empty
+
+//Question: this keyword
+// console.log(this); //window object
+function abc() {
+    console.log(this); //window object
+}
+// abc();
+
+//Question:
+
+// __________________________________________________________________________________________________________
+

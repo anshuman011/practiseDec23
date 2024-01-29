@@ -10,6 +10,9 @@ export const SomeCoolEffects1 = () => {
                 <li>Css</li>
                 <li>Effect</li>
             </ul>
+            <label for="photo">Take a photo</label>
+            <input type="file" id= "photo" capture="user"/>
+            <input type="file" capture="environment"/>
         </div>
     );
 };

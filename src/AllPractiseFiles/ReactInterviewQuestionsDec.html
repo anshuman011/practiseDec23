@@ -94,66 +94,6 @@ useEffect(() => {
 console.log('Count updated:', count);
 console.log('next');
 }, [count]);
--promise in js?
-Promises in JavaScript are a way to handle asynchronous operations
-A Promise is an object representing the eventual completion or failure of an
-asynchronous operation and its resulting value.
-A Promise can be in one of three states:
-Pending: The initial state; the promise is neither fulfilled nor rejected.
-Fulfilled: The operation completed successfully, and the promise has a resulting value.
-Rejected: The operation failed, and the promise has a reason for the failure.
-example:
-To access the result of a Promise in an API call, you can use the .then() method to handle
-the successful resolution of the Promise. The result of the API call will be available as an
-argument to the callback function passed to .then().
-Additionally, you can use the .catch() method to handle errors if the Promise is rejected.
-/ Function that returns a Promise for fetching data from an API
-const fetchData = () => {
-return fetch('https://jsonplaceholder.typicode.com/todos/1')
-.then(response => {
-// Check if the response is successful (status code 2xx)
-if (!response.ok) {
-throw new Error(`HTTP error! Status: ${response.status}`);
-}
-return response.json();
-});
-};
-
-// Using the fetchData function
-fetchData()
-.then(data => {
-console.log('Data:', data);
-// You can use the data here
-})
-.catch(error => {
-console.error('Error:', error);
-// Handle errors here
-});
-using Promise keyword?
-The Promise keyword is used to create a new Promise object in JavaScript.
-You can use the Promise constructor to wrap asynchronous operations and handle their
-results using the resolve and reject functions.
-Here's an example of using the Promise keyword for an API call:
-const fetchData = () => {
-return new Promise((resolve, reject) => {
-fetch('https://jsonplaceholder.typicode.com/todos/1')
-.then(response => {
-// Check if the response is successful (status code 2xx)
-if (!response.ok) {
-throw new Error(`HTTP error! Status: ${response.status}`);
-}
-return response.json();
-})
-.then(data => {
-// Resolve the Promise with the fetched data
-resolve(data);
-})
-.catch(error => {
-// Reject the Promise with the error
-reject(error);
-});
-});
-};
 - array of promises and one after the other execution required
 If you have an array of Promises and you want to execute them one after
 the other (sequentially), you can use a combination of Array.reduce and the Promise.then chain.
@@ -255,30 +195,6 @@ console.log(obj2); // { a: 1, b: { c: 3 } }
 // Cloning the Object with Spread Operator
 let cloneUser = { ...userDetails };
 This is no longer referenced, meaning changing the object's value will not affect the original object.
-- promise.all and promise then and promise hell?
-Promise.all is a method in JavaScript that takes an iterable of promises and returns a single Promise.
-This new Promise resolves when all of the provided
-promises in the iterable have resolved, or rejects if any of the promises are rejected.
-Promise.all(iterable);
-The returned promise will be fulfilled with an array of the resolved values of the input promises
-(in the same order as the input). If any of the promises in the iterable reject, the
-returned promise will be rejected with the reason of the first promise that was rejected.
-const promise1 = Promise.resolve('Hello');
-const promise2 = 42;
-const promise3 = new Promise((resolve, reject) => {
-setTimeout(resolve, 1000, 'World');
-});
-
-Promise.all([promise1, promise2, promise3])
-.then(values => {
-console.log(values); // ['Hello', 42, 'World']
-})
-.catch(error => {
-console.error(error);
-});
-The .then callback receives an array with the resolved values once all promises have been fulfilled.
-If any promise in the array
-rejects, the .catch callback will be triggered with the reason of the first rejected promise.
 -html5 new tags
 better semantics
 <article></article>

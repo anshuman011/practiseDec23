@@ -1,4 +1,4 @@
-//Problem: Wissen 
+//Question: Wissen 
 /* Create a countdown timer that will countdown from 30 and update every second.
 When the countdown hits 0, display Take Off.
 There is a reset button next to the timer.

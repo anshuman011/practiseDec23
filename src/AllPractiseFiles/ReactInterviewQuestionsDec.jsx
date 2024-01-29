@@ -38,34 +38,7 @@ export const Program3 = () => {
 };
 
 export const Program5 = () => {
-    //capgem L2 13dec
-    const varSetTimeOut = () => {
-        var array = [1, 2, 3, 4, 5];
-        console.log(array.length);
-        for (var i = 0; i < array.length; i++) {
-            console.log(i);
-            setTimeout(() => {
-                console.log(i);
-                console.log(array[i]);
-            }, 1000);
-        }
-    };
-    // varSetTimeOut();
-
-    const letSetTimeOut = () => {
-        var array = [1, 2, 3, 4, 5];
-        console.log(array.length);
-        var array = [1, 2, 3, 4, 5];
-        for (let i = 0; i < array.length; i++) {
-            console.log(i);
-            setTimeout(() => {
-                console.log(i);
-                console.log(array[i]);
-            }, 1000);
-        }
-    };
-    // letSetTimeOut();
-
+    
     const extraArrElement = () => {
         // var a = [1, 2, 3];
         let a = [1, 2, 3];

@@ -2,7 +2,6 @@
 velotio: debouncing, anagrams diffenrt ways discussed-for and index, split sort join,2 map and ascii
 use terms like : accessibility,security, performance,reusablitiy, modularity, testibility, readibility ex hoc
 curring,
-closure, implemet
 call apply bind
 difference between the spread operator and the rest parameter 
 shallow copying and deep cloning objects in JavaScript
@@ -12,10 +11,8 @@ single threaded js? can achive multi? how?
 how do wr get all those functions on array etc from js
 how can we attach a custom function to a data type in js
 imterceptors
-closure
 callback
 this keyword
-window vs document
 check if a variable is undefined
 generator funtion
 promise vs async await
@@ -54,24 +51,6 @@ function getThirdHighest(arr, highestNumber){
 };
 
 getThirdHighest([1,2,3,4,5,6],1)
-
-wissen
-// write a function to convert a string from
-// camel case to snake case.
-//  for e.g input : thisIsATest output : This_Is_A_Test
-function stringTOCamleCase(str) {
-  let splitStr = str.split("");
-  let result = "";
-  for (let i = 0; i < splitStr.length; i++) {
-    if (i > 0 && splitStr[i] === splitStr[i].toUpperCase()) {
-      result += "_";
-    }
-    result += splitStr[i];
-  }
-  result = result.charAt(0).toUpperCase() + result.slice(1);
-  console.log(result);
-}
-stringTOCamleCase("thisIsATest");
 
 callby value call by reference
 object/array how not to let newVar changeit
@@ -128,6 +107,7 @@ Hoisting in JavaScript is applicable at the level of variable and function decla
 within their respective scopes. It is important to note that hoisting does not occur for the entire script or
 block of code as a whole.
 __________________________________________________________________________________________________
+//dones
 **scope in javascript**
 scope refers to context or region of a program in which a variable can be accessed and modified
 global scope: Variables declared outside of any function or block have global scope

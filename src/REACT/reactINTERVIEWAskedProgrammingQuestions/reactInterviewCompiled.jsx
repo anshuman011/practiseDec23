@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const PrintNumberAfterEverySecond = () => {
-    //Problem: print 1 after 1 second 2 after 2 seconds, etc.
+    //Question: print 1 after 1 second 2 after 2 seconds, etc.
     const [number, setNumber] = useState(1);
     useEffect(() => {
         // console.log("first")

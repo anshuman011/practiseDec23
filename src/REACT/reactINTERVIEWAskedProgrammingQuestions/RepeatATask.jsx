@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 
-//Problem: Repeat a task after n seconds.
+//Question: Repeat a task after n seconds.
 export const RepeatATask = () => {
     const [name, setName] = useState("");
     const [nameList, setNameList] = useState(["aaa", "bbb", "ccc", "ddd"]);

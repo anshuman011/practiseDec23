@@ -11,7 +11,7 @@
 // recurse();
 
 function recursionPractise1(num) {
-    //Problem: count down value to 1 
+    //Question: count down value to 1 
     console.log(num);
     if (num > 0) {
         recursionPractise1(num - 1);
@@ -20,7 +20,7 @@ function recursionPractise1(num) {
 // recursionPractise1(10);
 
 function recursionPractise2(num) {
-    //Problem: factorial of a number 
+    //Question: factorial of a number 
 
     if (num != 0) {
         return num * recursionPractise2(num - 1)
@@ -32,7 +32,7 @@ function recursionPractise2(num) {
 console.log(recursionPractise2(3));
 
 function limitTheInputInARange(input) {
-    //Problem : keep input between 0 and 100
+    //Question : keep input between 0 and 100
     let newInput;
     // if (input >= 100) newInput = 100;
     // else if (input <= 0) newInput = 0;

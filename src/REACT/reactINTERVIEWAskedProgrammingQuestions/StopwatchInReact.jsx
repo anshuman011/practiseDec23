@@ -1,4 +1,4 @@
-//Problem: Stopwatch that starts , stops , resumes and resets on button clicks.
+//Question: Stopwatch that starts , stops , resumes and resets on button clicks.
 // stopwatch app : start +1/sec pause stops resume again +1/sec reset resets to 0
 
 import { useState, useEffect } from "react";

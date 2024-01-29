@@ -1,6 +1,7 @@
 import './App.css';
+import { SomeCoolEffects1 } from './SassFiles/somecooleffects';
 
-// import './JAVASCRIPT/javascriptINTERVIEWAskedProgrammingQuestions';
+import './JAVASCRIPT/javascriptINTERVIEWAskedProgrammingQuestions';
 // import './JAVASCRIPT/jsSelfPractisePrograms';
 // import './JAVASCRIPT/async/JsPromises';
 
@@ -8,6 +9,7 @@ import './App.css';
 function App() {
   return (
     <div className='App'>
+      {/* <SomeCoolEffects1/> */}
     </div>
   );
 }
