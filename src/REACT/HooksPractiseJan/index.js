@@ -8,7 +8,7 @@ import { UseMemo_UseCallBackParent } from "./UseMemo_UseCallBackParent";
 import { ReactMemoParent } from "./ReactMemo/ReactMemoParent";
 //
 import { FormsUsingUseReducer } from "./OtherPractiseHooks/FormsUsingUseReducer";
-
+import { ParentToAccessChildStateAndFunctionsUsingCallBacks } from "./OtherPractiseHooks/ParentAccessChildUsingCallbacks/ParentToAccessChildStateAndFunctionsUsingCallBacks";
 
 export {
     UseStateHook,
@@ -20,6 +20,7 @@ export {
     UseContextParent,
     UseMemo_UseCallBackParent,
     ReactMemoParent,
-    FormsUsingUseReducer
+    FormsUsingUseReducer,
+    ParentToAccessChildStateAndFunctionsUsingCallBacks
 }
 

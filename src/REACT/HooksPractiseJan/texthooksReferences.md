@@ -11,6 +11,7 @@ A custom hook is a function that uses other hooks to provide a specific piece of
 Hooks must be called at the TOP LEVEL of the functional component or custom hook
 Hooks can not be called inside loops and can not be conditionally called.
 Hooks must be called from functional components or custom hooks (not regular JavaScript functions).
+-**to access child state and functions using userf and useimperativehandle and callbacks (asked multiple times)**
 ________________________________________________________________________________
 DONE
 ________________________________________________________________________________

@@ -8,13 +8,13 @@ export const UseRef = () => {
     //useRef  1 use: interact directly with DOM nodes outside of React’s management of the Virtual DOM 
         // called React describes this an ‘escape hatch’.
     //useRef  2 use: call child component function from parent without lifting the state up,see useimperativehandle
+    //useRef 3 use: access child state using,see useimperativehandle
     const inputRef = useRef(null);
     const buttonRef = useRef(null);
     const changeInputValue = () => {
         console.log(inputRef.current.value)
         inputRef.current.focus();
         inputRef.current.value = "";
-
     }
     const updateButtonValue = () => {
         // Change the button value

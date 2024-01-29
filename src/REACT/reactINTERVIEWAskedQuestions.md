@@ -10,12 +10,12 @@ velotio
 why not direct change object value why setfunctions,updating store in one tab will update in next tab as well? how www.google.com works when in browser typed.
 realdom vs virtual dom
 class based vs function based
-redux workflow
+
 middleware-use
 challenges 
 authentication.authorization in fe
 achitecutre
-redux thunk vs saga
+
 advantage disadvantages of using react
 how do you update yourself with latest changes in react
 latest version, major changes
@@ -39,13 +39,10 @@ state change but dont want retendet to trigger
 controlled and unctrolled
 flux
 optmising react? 
-flow of redux
  difference between componentWillUnmount() and useEffect(() => () => {}, [])
  How would you design a scalable React application architecture?
  some common React performance issues and how can you address them?
  conditionally add attributes to React component
- What is Redux Thunk?
-What is Redux Saga?
 How does React Router work?
 When would you use flushSync in ReactJS?
 What is difference between Incremental DOM and Virtual DOM?
@@ -55,11 +52,8 @@ content security policy
 strict mode / use strict
 redundant component rerendering avoid
 how does browser understands jsx
-redux - all and use selector?
-redux value can be used outside function?
 how to authenticate several routes in your app
 layout in nextjs
-redux: reducer,api calls in reducer possible
 functional vs class components
 2apis parallel how to alert ,something useffect
 error boundaries. 

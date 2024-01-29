@@ -99,3 +99,111 @@ function reverseEachWordInASentence(str){
 };
 reverseEachWordInASentence("A Big Thanks To Me!");
 
+
+
+//asked in interview
+import React, { useEffect } from "react";
+
+export const Program3 = () => {
+    const arr = [1, 2, 3, 4, 5];
+    const sumRequired = 6;
+    const sumPossible = (arr, sumRequired) => {
+        let result;
+        arr.forEach((a, index) => {
+            let newArr = [...arr];
+            let total = a;
+            let totalElementsUsed = 1;
+            newArr = newArr.slice(index + 1);
+            newArr.forEach((i, index1) => {
+                total += i;
+                totalElementsUsed++;
+                if (total == sumRequired) {
+                    console.log(newArr, i, index1, total, totalElementsUsed);
+                    result = {
+                        total,
+                        totalElementsUsed
+                    }
+                }
+            });
+        });
+        return result;
+    }
+    const result = sumPossible(arr, sumRequired);
+    console.log(result);
+    if (result) {
+        console.log(result.totalElementsUsed, "yes")
+    }
+    else {
+        console.log("No")
+    }
+
+    return (<div>
+    </div>)
+};
+
+    // [1,2,3,4,5].filter((item) => {
+    //       if(item > 3){
+    //           return 'abc'
+    //       } 
+    //        return 'def'
+    // })
+
+    setImmediate(()=>{
+        console.log('from setImmediate')
+    });
+    setTimeout(()=>{
+        console.log('from setTimeout')
+    },0);
+    new Promise(resolve=>{
+        console.log('From promise')
+        resolve();
+    });
+    setTimeout(()=>{
+        console.log('from setTimeout from 1 millisecond')
+    },1);
+
+    // const input = "abbcddeee";
+
+    // const counter = (input) => {
+    //     let finalCount = '';
+    //     for (let i = 0; i < input.length; i++) {
+    //         console.log(input[i], "ooooo");
+    //         let singleChar = input[i];
+    //         let count = 0
+    //         for (let j = 0; j < input.length; j++) {
+    //             if (singleChar == input[j]) {
+    //                 count++;
+    //             };
+    //         };
+    //         if (finalCount.indexOf(singleChar) == -1) {
+    //             finalCount = finalCount + input[i] + count;
+    //         };
+    //     };
+    //     console.log(finalCount)
+    // };
+
+    // counter(input);
+    //     input abbcddeee
+    // output a1b2c1d2e3
+
+
+    // INPUT: [ 5, "1","a", 3, 4, 5, 7, 8, 9, 5, 3, 6]
+    // unique no OUTPUT: [ 5, 1, 3, 4, 7, 8, 9, 6]
+
+
+    // fn([p1,p2,p3,p4] =n, 3=m)
+    // 	- return Promise
+    // 		- resolve if in when we find m promises getting resolved out of the n promises passed
+    // 		- reject - if you find any rejection before m promises are resolved
+    
+    // p1 --> 10
+    // p2       15
+    // p3       100
+    // p4       50 ------> resolve
+
+
+    // p1 -->            10
+    // p2    rejected   15 ---> reject
+    // p3                  100
+    // p4                   50
+    

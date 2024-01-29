@@ -2,7 +2,7 @@ import { forwardRef, useImperativeHandle, useState } from "react"
 
 export const UseImeperativeHandleChild = forwardRef((props, ref) => {
     const [toggle, setToggle] = useState(false);
-
+    //use 1: access child state (2nd way using callbacks), access child functions
     //to call a function defined in child component we use useImperativeHandle and useRef 
     //useImperativeHandle allows to define functions on a ref, these functions can be called in the component that has the ref defined
     //helps in not lifting up the state to parent everytime

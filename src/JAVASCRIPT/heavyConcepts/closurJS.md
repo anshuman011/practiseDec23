@@ -159,6 +159,21 @@ console.log(createCounter()()); //1
 console.log(createCounter()()); //1
 console.log(createCounter()()); //1
 because in second example createCounter has been invoked again ,a new instance of the closure is created each time
+
+Question:
+write a js function that keeps track of how many times it is called
+function trackFunctionCalls() {
+  let callCount = 0;
+  function yourFunction() {
+    callCount++;
+    console.log("Function called! Total calls: " + callCount);
+  }
+  return yourFunction;
+}
+const trackedFunction = trackFunctionCalls();
+trackedFunction(); // Outputs: Function called! Total calls: 1
+trackedFunction(); // Outputs: Function called! Total calls: 2
+trackedFunction(); // Outputs: Function called! Total calls: 3
 ____________________________________________________________________________________________________________
 
 
