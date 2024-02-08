@@ -1,3 +1,4 @@
+//added gtm on 31january for testing
 import { useEffect, useReducer, useState } from "react";
 // useState
 //funtions event passing
@@ -25,9 +26,9 @@ export const UseStateHook = () => {
         <div style={{ backgroundColor: "yellow" }}>
             <p>UseState</p>
             {counterJs}
-            <button onClick={incrementJs}>incrementJS</button>
+            <button onClick={incrementJs} className="gaTesting1">incrementJS</button>
             {counterReact}
-            <button onClick={incrementReact}>incrementReact</button>
+            <button onClick={incrementReact} className="gaTesting2">incrementReact</button>
             {inputValue}
             {/* <input onChange={inputChangeHanlder}/> */}{/* works fine, event auto passed */}
             {/* <input onChange={()=>inputChangeHanlder}/>no error but func not invoked */}

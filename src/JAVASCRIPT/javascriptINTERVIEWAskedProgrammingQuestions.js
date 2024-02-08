@@ -145,45 +145,6 @@ function highestLowestFrequencyChar(input) {
     console.log(`Min occuring is ${finalFrequencyMapMin.join(",")} at ${minFrequency}`);
 }
 
-//pending
-//Question: consecutive array parts should be equal to sum and yes/no and how many
-// Input1: // arr = [43, 22, 25, 10, 5, 7] // sum = 12 // Output1: Yes 2
-// Input2:  // arr = [43, 22, 25, 10, 5, 7] // sum = 40 // Output2: Yes 3
-// Input3:  // arr = [43, 22, 25, 10, 5, 7] // sum = 32 // Output: No
-// consecutiveEqualsSum([43, 22, 25, 10, 5, 7], 25);
-function consecutiveEqualsSum(arr, sumRequired) {
-    let sumOfElements;
-    let noOfElementsRequired;
-    let result;
-    if (arr.indexOf(sumRequired) != -1) {
-        console.log("YES 1")
-    }
-    else {
-        /* result = */ arr.forEach((n, index) => {
-        if (n < sumRequired) {
-            sumOfElements = n;
-            noOfElementsRequired = 1;
-            for (var i = index + 1; i < arr.length; i++) {
-                console.log("ppp", arr[i], sumOfElements, noOfElementsRequired)
-                sumOfElements += arr[i];
-                noOfElementsRequired++;
-                if (sumOfElements == sumRequired) {
-                    result = noOfElementsRequired;
-                }
-            }
-            return result;
-        }
-    })
-    }
-    console.log(result)
-    if (result == 0) {
-        console.log("NO")
-    }
-    else {
-        console.log("YES", result)
-    }
-}
-
 // __________________________________________________________________________________________________________
 //Question based on different concepts
 //Question: async
@@ -246,13 +207,12 @@ setTimeout(() => { console.log('3'); }, 100);
 Promise.resolve().then(() => { console.log('4'); });
 //answer: 2 4 1 3 
 
-
 //Question: this keyword
 // console.log(this); //window object
+// abc();
 function abc() {
     console.log(this); //window object
 }
-// abc();
 
 //Question: scope
 var a = 11111;
@@ -308,12 +268,28 @@ const obj = {
 obj.print();
 const obj1 = {
     name: 'ABC',
-    print: function(){ console.log(this.name) } //'ABC'
+    print: function () { console.log(this.name) } //'ABC'
 }
 obj1.print();
 
 //Question: array
 var a = [1, 2, 3]; //or let a = [1, 2, 3];
 a[10] = 99;
-console.log(a[5], a[10], a.length,a);// undefined, 99, 11, [ 1, 2, 3, <7 empty items>, 99 ]
+console.log(a[5], a[10], a.length, a);// undefined, 99, 11, [ 1, 2, 3, <7 empty items>, 99 ]
+
+//Question: this
+let obj2 = {
+    firstName: "Anshuman",
+    print: function () {
+        console.log(this);
+    },
+    obj1: {
+        print2: function () {
+            console.log(this.firstName);
+        }
+    }
+}
+obj2.print(); //obj2 itself {firstName: 'Anshuman', obj1: {…}, print: ƒ}
+obj2.obj1.print2(); //undefined
+
 // __________________________________________________________________________________________________________

@@ -3,7 +3,7 @@ Debouncing and Throttling are two techniques that are used to limit the rate at 
 Debouncing delays the execution of the function until the user stops triggering the fucntion for a specified amount of time. 
 Throttling limits the execution of the function to once in every specified time interval.
 **Debouncing:**
-An event is triggered-a delay is introduced before the event is executed-if same event is triggered before the delay timer is expired then delay timer resets and event is not executed-once no new event triggered and delay expires after that any new triggered event is executed and new delay is introduced.
+An event is triggered-a delay is introduced before the event is executed-if same event is triggered before the delay timer is expired then delay timer resets and new event is not executed but delayed further-once no new event triggered and delay expires after that the old triggered event is executed.
 example: search bar and we want to call api only after user two consecutive keystroke there is gap of 5 seconds say.
 code: 
 <input id="searchBar" value=""/>

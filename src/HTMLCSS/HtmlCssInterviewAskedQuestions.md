@@ -32,7 +32,7 @@ margin is not included in the actual size of the box. The box's total width and 
 box-sizing property allows us to include the padding and border in an element's total width and height.
 box-sizing: content-box - default ,only content, padding border not included
 box-sizing: border-box - all included
-**-->how to include css in a html file?**
+**how to include css in a html file?**
 inline css- style attribute
 internal css- <style> tag in <head> or <body>
 external css-same project or from some other server hosted file-

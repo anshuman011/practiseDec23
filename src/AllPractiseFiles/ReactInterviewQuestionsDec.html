@@ -16,6 +16,7 @@ const MyParentComponent = () => (
   <MyLazyComponent />
 </React.Suspense>
 );
+<!-- Consolas, 'Courier New', monospace -->
 React.lazy(() => import('./MyLazyComponent')) returns a Promise that resolves to the module containing
 the MyLazyComponent.
 The React.Suspense component is used to specify a fallback UI while the lazy component is being loaded.

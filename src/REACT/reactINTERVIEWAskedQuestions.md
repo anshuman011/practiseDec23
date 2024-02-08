@@ -5,17 +5,16 @@ bcoz when an list(array) is modified then all the index of all the elements gets
 _______________________________________________________________________________________________
 //pending
 Pure vs Impure Components in React?
-Chatgpt
+why direct manipualtion is heavy? will document. thing rerenders the whole thing? what does react rerenders
 velotio
 why not direct change object value why setfunctions,updating store in one tab will update in next tab as well? how www.google.com works when in browser typed.
 realdom vs virtual dom
 class based vs function based
-
 middleware-use
 challenges 
 authentication.authorization in fe
 achitecutre
-
+how web works.
 advantage disadvantages of using react
 how do you update yourself with latest changes in react
 latest version, major changes
